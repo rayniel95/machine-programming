@@ -1,0 +1,34 @@
+%include io64.inc
+section .data
+
+a dw 50
+b dw 50
+msg dw
+
+section .text
+global main
+
+main:
+
+mov ax,[a]
+mov bx, [b]
+
+repetir:
+cbw
+div bx
+
+cmp dx,0
+
+je final
+mov ax, bx
+mov bx, dx
+jmp repetir
+
+final:
+mov msg,dx
+
+PRINT_STRING msg
+
+
+ret
+
